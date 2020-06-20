@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: commentservice-pod
+  labels:
+    app: commentservice
+spec:
+  containers:
+  - name: commentservice-container
+    image: k8s.gcr.io/busybox
+    args:
+    - /bin/sh
+    - -c
+    - touch /tmp/a.txt; sleep 30; rm -rf /tmp/a.txt; sleep 600
+    livenessProbe:
+        exec:
+          command:
+          - cat
+          - /tmp/a.txt
+        initialDelaySeconds: 5
+        periodSeconds: 5

@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: environment-pod
+  labels:
+    app: environment
+spec:
+  containers:
+  - name: environment-container
+    image: busybox
+    env:
+    - name: GROUP
+      value: "DevOps Underground"
+    command: ['sh', '-c', 'echo Hello ${GROUP} Fellows && sleep 3600']

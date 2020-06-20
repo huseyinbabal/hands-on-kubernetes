@@ -1,0 +1,25 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: ingress-microservice
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  backend:
+    serviceName: default-http-backend
+    servicePort: 80
+  rules:
+  - host: api1.myapp.io
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: api-1
+          servicePort: 8080
+  - host: api2.myapp.io
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: api-2
+          servicePort: 8080

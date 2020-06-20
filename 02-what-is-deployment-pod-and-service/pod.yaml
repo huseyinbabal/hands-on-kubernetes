@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: userservice-pod
+  labels:
+    app: userservice
+spec:
+  containers:
+  - name: userservice-container
+    image: busybox
+    command: ['sh', '-c', 'echo Hello DevOps Underground Fellows :) && sleep 3600']

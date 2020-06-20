@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: hostpath-directory
+  namespace: webinar
+spec:
+  containers:
+  - image: busybox
+    command: ['sh', '-c', 'ls -al /test; sleep 3600;']
+    imagePullPolicy: IfNotPresent
+    name: busybox-1
+    volumeMounts:
+    - mountPath: /test
+      name: my-volume
+  volumes:
+  - name: my-volume
+    hostPath:
+      path: /tmp
+      type: Directory

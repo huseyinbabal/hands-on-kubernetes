@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-with-pv
+  namespace: webinar
+spec:
+  containers:
+  - image: busybox
+    command: ['sh', '-c', 'while true; do date >> /test-pv/time_log.txt; sleep 2; done']
+    imagePullPolicy: IfNotPresent
+    name: busybox-1
+    volumeMounts:
+    - mountPath: /test-pv
+      name: my-volume
+  volumes:
+  - name: my-volume
+    persistentVolumeClaim:
+      claimName: gcp-sc-claim
